@@ -5,6 +5,12 @@ html {
     font-family: 'Lato'
 }
 
+* {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+}
+
 body {
     margin: 0px;
     padding: 0px;
@@ -25,6 +31,36 @@ li {
 }
 
 /*Slider Animation*/
+
+@-webkit-keyframes slider {
+    0% {
+        margin-left: 0;
+    }
+    20% {
+        margin-left: 0;
+    }
+    30% {
+        margin-left: -100%
+    }
+    40% {
+        margin-left: -100%
+    }
+    60% {
+        margin-left: -200%
+    }
+    70% {
+        margin-left: -200%
+    }
+    80% {
+        margin-left: -300%
+    }
+    90% {
+        margin-left: -300%
+    }
+    100% {
+        margin-left: 0;
+    }
+}
 
 @keyframes slider {
     0% {
@@ -53,6 +89,24 @@ li {
     }
     100% {
         margin-left: 0;
+    }
+}
+
+@-webkit-keyframes sliderBrand {
+    0% {
+        margin-left: 0;
+    }
+    100% {
+        margin-left: -300%
+    }
+}
+
+@keyframes sliderBrand {
+    0% {
+        margin-left: 0;
+    }
+    100% {
+        margin-left: -300%
     }
 }
 
@@ -120,8 +174,8 @@ header {
         -ms-flex-align: center;
         align-items: center;
         -webkit-box-pack: center;
-        -ms-flex-pack: center;
         font-size: 0.9rem;
+        -ms-flex-pack: center;
         justify-content: center;
         padding: 4px 0px;
         p {
@@ -132,13 +186,15 @@ header {
     }
     .container {
         /*Logo Area*/
-        // display: none;
+        padding: 0.5rem 1.7rem;
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-        padding: 1rem 1.8rem;
         .fas {
             font-size: 1.4rem;
         }
@@ -150,36 +206,58 @@ header {
         .burger-check {
             /*hiding the checkbox for the menu*/
             display: none;
+            position: absolute;
         }
         .burger-check {
             /*triggering the checkbox to display the nav*/
             &:checked~.main-nav {
-                visibility: visible;
-                height: auto;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
             }
         }
         .main-nav {
             /*nav menu*/
             width: 100%;
-            visibility: hidden;
-            height: 0;
+            display: none;
             .menu {
                 font-size: 1.2rem;
-                -ms-flex-pack: distribute;
+                width: 100%;
                 -webkit-box-pack: center;
+                -ms-flex-pack: center;
                 justify-content: center;
                 -ms-flex-wrap: wrap;
                 flex-wrap: wrap;
-                margin: 0px auto 10px auto;
                 .menu-item {
-                    width: 60%;
+                    width: 100%;
                     text-align: center;
+                    margin-top: 0.2rem;
                     border-top: solid white 2px;
-                    padding: 0rem 0.2rem;
                     &:hover {
                         border-top: solid $red 2px;
                         color: $red;
                         cursor: pointer;
+                    }
+                }
+                .menu-item-dropdown {
+                    width: 90%;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    text-align: center;
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    -ms-flex-direction: column;
+                    flex-direction: column;
+                    .dropdown {
+                        display: none;
+                        width: 100%;
+                        .drop-list {
+                            text-align: center;
+                        }
                     }
                 }
             }
@@ -190,17 +268,11 @@ header {
 /*call to action section*/
 
 .cta-section {
-    margin-top: 100px;
-    height: 500px;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+    margin-top: 70px;
+    height: 600px;
+    font-size: 1.2rem;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    font-size: 1.2rem;
     .picture-wrapper {
         position: absolute;
         overflow: hidden;
@@ -209,6 +281,7 @@ header {
         height: 500px;
     }
     .picture {
+        -webkit-animation: 12s slider infinite;
         animation: 12s slider infinite;
         width: 400%;
         height: 100%;
@@ -218,12 +291,15 @@ header {
         }
     }
     .container {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        margin: 1.5rem auto 0.2rem auto;
         .cta-title,
         .details-text {
             background: $red-opacity;
             text-align: center;
             color: white;
-            max-width: 600px;
             border-radius: 2px;
             padding: 5px;
         }
@@ -245,6 +321,8 @@ header {
         width: 100%;
         -ms-flex-pack: distribute;
         justify-content: space-around;
+        height: 500px;
+        position: relative;
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
@@ -253,12 +331,28 @@ header {
         background: $blue;
         color: white;
         height: 100px;
-        .brand {
-            transition: all 300ms ease-in-out;
-            width: 55px;
-            &:hover{
-                transform: translateY(-7px);
-                
+        overflow: hidden;
+        .brand-slide {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            .brand-wrapper {
+                position: absolute;
+                -webkit-animation: 70s sliderBrand infinite;
+                animation: 70s sliderBrand infinite;
+                width: 400%;
+                margin: 2rem 2rem 0rem 2rem;
+                height: 100%;
+                .brand {
+                    width: 25%;
+                    z-index: 3;
+                    -webkit-transition: all 300ms ease-in-out;
+                    transition: all 300ms ease-in-out;
+                    &:hover {
+                        -webkit-transform: translateY(-7px);
+                        transform: translateY(-7px);
+                    }
+                }
             }
         }
     }
@@ -283,9 +377,9 @@ header {
             -ms-flex-wrap: wrap;
             flex-wrap: wrap;
             width: 100%;
-            max-width: 300px;
             text-align: center;
             -webkit-box-align: center;
+            max-width: 350px;
             -ms-flex-align: center;
             align-items: center;
             margin-bottom: 1.2rem;
@@ -397,73 +491,68 @@ header {
 footer {
     background: $dark-gray;
     color: white;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     text-align: center;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     .container {
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
         div {
             width: 100%;
         }
     }
-
-  
 }
 
-.copyright{
-    margin:0px;
+.copyright {
+    margin: 0px;
     width: auto;
 }
 
 /*Tablet*/
 
-@media screen and(min-width:720px) {
+@media screen and(min-width:768px) {
     html {
         font-size: 17px;
     }
     header {
         .container {
             /*Logo Area*/
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            align-items: center;
-            -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
-            justify-content: space-between;
-            padding: 0.3rem 0rem 0rem 0rem;
             .burger {
                 display: none;
             }
             .logo {
-                width: 20%;
-                margin: 1.2rem 0 1.2rem 1.2rem;
+                width: 10%;
                 text-align: center;
             }
             .main-nav {
                 /*nav menu*/
-                width: 65%;
-                height: auto;
-                text-align: right;
-                -ms-flex-item-align: end;
-                align-self: flex-end;
-                -webkit-box-pack: end;
-                -ms-flex-pack: end;
-                justify-content: flex-end;
+                width: 80%;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
                 .menu {
+                    width: 100%;
+                    font-size: 1rem;
                     -webkit-box-pack: end;
                     -ms-flex-pack: end;
                     justify-content: flex-end;
-                    -ms-flex-item-align: end;
-                    align-self: flex-end;
-                    text-align: right;
                     .menu-item {
-                        font-size: 1rem;
-                        padding: 0.4rem;
-                        text-align: right;
                         width: auto;
-                        visibility: visible;
-                        opacity: 1;
+                        text-align: center;
+                        margin: 0px 1rem;
+                    }
+                    .menu-item-dropdown {
+                        width: auto;
+                        text-align: center;
                     }
                 }
             }
@@ -477,7 +566,11 @@ footer {
     }
     footer {
         .container {
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
             justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
             align-items: center;
             div {
                 width: 25%;
@@ -488,15 +581,20 @@ footer {
 
 /*Desktop*/
 
-@media screen and(min-width:1024px) {
-    .main-section .container .card {
-        width: 33%;
+@media screen and(min-width:1020px) {
+    .main-section {
+        .container {
+            max-width: 1200px;
+            .card {
+                width: 30%;
+            }
+        }
     }
     header {
         .container {
             .main-nav {
                 /*nav menu*/
-                width: 45%;
+                width: 60%;
             }
         }
     }
