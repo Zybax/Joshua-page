@@ -345,7 +345,7 @@ header {
                 height: 100%;
                 .brand {
                     width: 25%;
-                    z-index: 3;
+                    z-index: 1;
                     -webkit-transition: all 300ms ease-in-out;
                     transition: all 300ms ease-in-out;
                     &:hover {
@@ -367,6 +367,7 @@ header {
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
+        margin:auto;
         .main-section-title {
             width: 100%;
             text-align: center;
