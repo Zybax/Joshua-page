@@ -233,33 +233,36 @@ header {
                     text-align: center;
                     margin-top: 0.2rem;
                     border-top: solid white 2px;
-                    &:hover {
+                    &:hover>a {
                         border-top: solid $red 2px;
                         color: $red;
                         cursor: pointer;
                     }
                 }
-                .menu-item-dropdown {
-                    width: 90%;
-                    -webkit-box-align: center;
-                    -ms-flex-align: center;
-                    align-items: center;
-                    text-align: center;
+                /*Styles for dropdowns*/
+                li ul {
+                    display: none;
+                    margin-left: -1rem;
+                }
+                ul .menu-item {
+                    margin-top: 0px;
+                }
+                ul li a {
                     display: -webkit-box;
                     display: -ms-flexbox;
                     display: flex;
-                    -webkit-box-orient: vertical;
-                    -webkit-box-direction: normal;
-                    -ms-flex-direction: column;
-                    flex-direction: column;
-                    .dropdown {
-                        display: none;
-                        width: 100%;
-                        .drop-list {
-                            text-align: center;
-                        }
-                    }
+                    text-decoration: none;
+                    background: rgb(255, 255, 255);
+                    padding: 0.4rem;
                 }
+                ul li a:hover {
+                    background: rgb(210, 211, 211);
+                }
+                li:hover ul {
+                    display: block;
+                    position: absolute;
+                }
+                /*Styles for dropdowns end*/
             }
         }
     }
@@ -367,7 +370,7 @@ header {
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
-        margin:auto;
+        margin: auto;
         .main-section-title {
             width: 100%;
             text-align: center;
@@ -550,11 +553,12 @@ footer {
                         width: auto;
                         text-align: center;
                         margin: 0px 1rem;
+                        &:hover~.droplist {
+                            display: block;
+                            position: fixed;
+                        }
                     }
-                    .menu-item-dropdown {
-                        width: auto;
-                        text-align: center;
-                    }
+                    .drop-list {}
                 }
             }
         }
